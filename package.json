@@ -1,0 +1,15 @@
+{
+  "name": "local-bot",
+  "version": "0.0.1",
+  "description": "a local bot for local stuff",
+  "dependencies" : {
+    "socket.io"   :  "*"
+  },
+  "devDependencies": {
+  },
+  "bundledDependencies": [
+  ],  
+  "engines": {
+    "node": "0.10.0"
+  }
+}

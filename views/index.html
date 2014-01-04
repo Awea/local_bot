@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   </head>
 
-  <body data-ip="192.168.0.113">
+  <body>
     <form id="video_form">
       <input type="text" id="url">
       <input type="submit">
@@ -23,13 +23,19 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
     <script src="https://www.youtube.com/player_api" type="text/javascript"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
       $(window).load(function(){
-        var ws_server = $("body").data('ip');
+        var conn = io.connect('http://localhost');
         var player = new YT.Player('ytplayer', {
           height: '390',
           width: '640',
           videoId: 'M7lc1UVf-VE'
+        });
+
+        conn.on('receive_video', function (data) {
+          console.log(data);
+          update_video(data.video_id);
         });
 
         $('#video_form').submit(function(event){
@@ -45,7 +51,7 @@
           var video_id = url_to_videoId();
           player.clearVideo();
           update_video(video_id);
-          conn.send(video_id);
+          conn.emit('add_video', {video_id: video_id});
         }
 
         var url_to_videoId = function(){
@@ -56,16 +62,6 @@
           }
 
           return video_id;
-        }
-
-        if (window["WebSocket"]) {
-          conn = new WebSocket("ws://" + ws_server + ":8080/ws");
-          conn.onmessage = function(evt) {
-            console.log(evt);
-            update_video(evt.data);
-          }
-        } else {
-          console.log("Your browser does not support WebSockets.")
         }
       });     
     </script>
