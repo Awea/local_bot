@@ -12,58 +12,29 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+      .submit {
+        font: bold 11px Arial;
+        text-decoration: none;
+        background-color: #EEEEEE;
+        color: #333333;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC;
+      }
+      .submit:hover {
+        cursor: default;
+      }
+    </style>
   </head>
 
   <body>
-    <form id="video_form">
+    <div data-view="video_form">
       <input type="text" id="url">
-      <input type="submit">
-    </form>
-    <div id="ytplayer"></div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
-    <script src="https://www.youtube.com/player_api" type="text/javascript"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript">
-      $(window).load(function(){
-        var conn = io.connect('http://localhost');
-        var player = new YT.Player('ytplayer', {
-          height: '390',
-          width: '640',
-          videoId: 'M7lc1UVf-VE'
-        });
-
-        conn.on('receive_video', function (data) {
-          console.log(data);
-          update_video(data.video_id);
-        });
-
-        $('#video_form').submit(function(event){
-          event.preventDefault();
-          set_video();
-        }); 
-
-        var update_video = function(video_id){
-          player.loadVideoById(video_id);
-        }
-
-        var set_video = function(){
-          var video_id = url_to_videoId();
-          player.clearVideo();
-          update_video(video_id);
-          conn.emit('add_video', {video_id: video_id});
-        }
-
-        var url_to_videoId = function(){
-          var video_id = $('#url').val().split('v=')[1];
-          var offset = video_id.indexOf('&');
-          if(offset != -1) {
-            video_id = video_id.substring(0, offset);
-          }
-
-          return video_id;
-        }
-      });     
-    </script>
+      <a class="submit">send</a>
+    </div>
+    <script src="/components/requirejs/require.js" data-main="js/local_bot"></script>
   </body>
 </html>

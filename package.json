@@ -3,12 +3,17 @@
   "version": "0.0.1",
   "description": "a local bot for local stuff",
   "dependencies" : {
-    "socket.io"   :  "*"
+    "socket.io"   :  "0.9.14",
+    "express"     : "3.4.7"
   },
   "devDependencies": {
+    "coffee-script" : "1.6.3",
+    "nodemon" : "1.0.1",
+    "jitter" : "1.2.1"
   },
   "bundledDependencies": [
-  ],  
+  ], 
+  "main": "app.coffee", 
   "engines": {
     "node": "0.10.0"
   }
