@@ -2,9 +2,9 @@
 
 ## What can I do for you
 
-Actually my mission is just to get a youtube link then add it to a playlist.
-I will play each link from my playlist until they finish.
-When I haven't any other link to play, I just stop and wait for a new link.
+* My mission is just to get a youtube link, like this [one](http://www.youtube.com/watch?v=gb2j1lr6c1o), then I add it to my playlist
+* I will play each link from my playlist
+* When I haven't any other link to play, I just stop until I get a new link
 
 ## Get dependencies
 
