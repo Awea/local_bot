@@ -21,7 +21,7 @@
       };
 
       VideoForm.prototype.initialize = function() {
-        return this.conn = io.connect("http://localhost");
+        return this.conn = io.connect("http://192.168.0.113");
       };
 
       VideoForm.prototype.send_video = function() {

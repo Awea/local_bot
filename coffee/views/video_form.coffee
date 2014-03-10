@@ -5,7 +5,7 @@ define ['underscore', 'backbone', 'jquery', 'io'], (_, Backbone, $, io) ->
       "click .submit": "send_video"
 
     initialize: ->
-      @conn = io.connect("http://localhost")
+      @conn = io.connect("http://192.168.0.113")
 
     send_video: ->
       url = @.$("#url").val()
