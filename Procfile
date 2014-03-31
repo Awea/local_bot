@@ -1,2 +1,2 @@
-server: nodemon
-coffee: jitter coffee public/js
+server: $(npm bin)/nodemon
+coffee: $(npm bin)/jitter coffee public/js
